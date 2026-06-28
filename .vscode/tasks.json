@@ -1,0 +1,102 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "embed",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${workspaceFolder}/tool/emb.py",
+                "${workspaceFolder}/src/cl",
+                "${workspaceFolder}/build/cl-include/clcode.h"
+            ],
+            "group": "none",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe",
+                    "args": [
+                        "-Command"
+                    ]
+                }
+            },
+            "command": "gcc",
+            "args": [
+                "-g",
+                "${input:debug_macro}",
+                "${input:dll_flag}",
+                "${workspaceFolder}/src/*.c",
+                "-I",
+                "${config:project.opencl}/include",
+                "-I",
+                "${workspaceFolder}/build/cl-include",
+                "-I",
+                "${workspaceFolder}/.vscode/static_include",
+                "-L",
+                "${config:project.opencl}/lib",
+                "-lOpenCL",
+                "-o",
+                "${workspaceFolder}/build/result.bin"
+            ],
+            "dependsOn": [
+                "embed"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "debug_macro",
+            "type": "command",
+            "command": "extension.commandvariable.pickStringRemember",
+            "args": {
+                "key": "build.debug_macro",
+                "options": [
+                    {
+                        "value": "-DRELEASE",
+                        "label": "RELEASE"
+                    },
+                    {
+                        "value": "-DDEBUG",
+                        "label": "DEBUG"
+                    }
+                ],
+                "default": "-DRELEASE"
+            }
+        },
+        {
+            "id": "dll_flag",
+            "type": "command",
+            "command": "extension.commandvariable.pickStringRemember",
+            "args": {
+                "key": "build.dll_flag",
+                "options": [
+                    {
+                        "value": "-DDUMMY",
+                        "label": "Executable"
+                    },
+                    {
+                        "value": "-shared",
+                        "label": "Shared"
+                    }
+                ],
+                "default": "-DDUMMY"
+            }
+        },
+    ]
+}
