@@ -6,6 +6,6 @@
         "**/*.rpymc": true,
         "**/cache/": true
     },
-    "project.gcc": "",
-    "project.opencl": "" 
+    "project.opencl": "",
+    "project.python":"",
 }

@@ -4,6 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${default}",
+                "${config:project.python}/include",
                 "${workspaceFolder}/.vscode/static_checking_include/",
                 "${workspaceFolder}/.vscode/static_include/",
                 "${workspaceFolder}/src"
@@ -13,7 +14,7 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "${config:project.gcc}/bin/gcc.exe",
+            "compilerPath": "gcc",
             "cStandard": "c17",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "windows-gcc-x64"

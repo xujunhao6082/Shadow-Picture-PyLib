@@ -32,7 +32,7 @@
             "args": [
                 "-g",
                 "${input:debug_macro}",
-                "${input:dll_flag}",
+                "-shared",
                 "${workspaceFolder}/src/*.c",
                 "-I",
                 "${config:project.opencl}/include",
@@ -40,9 +40,14 @@
                 "${workspaceFolder}/build/cl-include",
                 "-I",
                 "${workspaceFolder}/.vscode/static_include",
+                "-I",
+                "${config:project.python}/include",
+                "-L",
+                "${config:project.python}/libs",
                 "-L",
                 "${config:project.opencl}/lib",
                 "-lOpenCL",
+                "-lpython",
                 "-o",
                 "${workspaceFolder}/build/result.bin"
             ],
@@ -78,25 +83,6 @@
                 ],
                 "default": "-DRELEASE"
             }
-        },
-        {
-            "id": "dll_flag",
-            "type": "command",
-            "command": "extension.commandvariable.pickStringRemember",
-            "args": {
-                "key": "build.dll_flag",
-                "options": [
-                    {
-                        "value": "-DDUMMY",
-                        "label": "Executable"
-                    },
-                    {
-                        "value": "-shared",
-                        "label": "Shared"
-                    }
-                ],
-                "default": "-DDUMMY"
-            }
-        },
+        }
     ]
 }
