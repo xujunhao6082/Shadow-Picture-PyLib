@@ -1,4 +1,9 @@
 ### Description
 
-This is a template for Native OpenCL development with Visual Studio Code.
-Before use, please configurate .vscode/setting.json to find dependencies.
+利用alpha通道,通过最小二乘法使图片在不同背景下呈现不同图像
+mix函数本身接受两个展平传入的一维像素元组(已归一化)可迭代对象作为图片, 最后一个参数为float,表示最佳拟合点,可返回一个装有像素元组的元组
+
+### Compile
+
+`setting.json`中应设定你的依赖位置, 包括Python,OpenCL,
+此外相应库目录下需有GNU格式的链接库

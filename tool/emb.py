@@ -18,6 +18,6 @@ for i in infiles:
     for w in ESCAPE_T:
         content = content.replace(w[0], w[1])
     lines = content.splitlines()
-    outfile.write('\n'.join((f"\"{l}\"" for l in lines)))
+    outfile.write('\n'.join((f"\"{l}\\n\"" for l in lines)))
 outfile.write(";\n")
 print("Emb Finnished")
